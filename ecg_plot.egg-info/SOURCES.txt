@@ -1,0 +1,9 @@
+LICENCE
+README.md
+setup.py
+ecg_plot/__init__.py
+ecg_plot/ecg_plot.py
+ecg_plot.egg-info/PKG-INFO
+ecg_plot.egg-info/SOURCES.txt
+ecg_plot.egg-info/dependency_links.txt
+ecg_plot.egg-info/top_level.txt

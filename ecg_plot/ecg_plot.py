@@ -21,10 +21,10 @@ def _ax_plot(ax, x, y, secs=10, lwidth=0.5, amplitude_ecg = 1.8, time_ticks =0.2
     ax.set_ylim(-amplitude_ecg, amplitude_ecg)
     ax.set_xlim(0, secs)
 
-    ax.grid(which='major', linestyle='-', linewidth='0.5', color='red')
-    ax.grid(which='minor', linestyle='-', linewidth='0.5', color=(1, 0.7, 0.7))
+    ax.grid(which='major', linestyle='-', linewidth='0.5', color=(0.9, 0.3, 0.3))
+    ax.grid(which='minor', linestyle='-', linewidth='0.5', color=(0.95, 0.85, 0.85))
 
-    ax.plot(x,y, linewidth=lwidth)
+    ax.plot(x,y, linewidth=lwidth, color = (0, 0, 0.7))
 
 
 lead_index = ['I', 'II', 'III', 'aVL', 'aVR', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
@@ -149,9 +149,12 @@ def plot(
         color_minor = (0.75, 0.75, 0.75)
         color_line  = (0,0,0)
     else:
-        color_major = (1,0,0)
-        color_minor = (1, 0.7, 0.7)
-        color_line  = (0,0,0.7)
+        # color_major = (1,0,0)
+        # color_minor = (1, 0.7, 0.7)
+        # color_line  = (0,0,0.7)
+        color_major = (0.9, 0.3, 0.3)  # Lighter red for major grid
+        color_minor = (0.95, 0.85, 0.85)  # Very light red for minor grid
+        color_line = (0, 0, 0.7)
 
     if(show_grid):
         ax.set_xticks(np.arange(x_min,x_max,0.2))    

@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import AutoMinorLocator
+from matplotlib.ticker import AutoMinorLocator, MaxNLocator
 import os
 from math import ceil 
 
@@ -157,8 +157,10 @@ def plot(
         color_line = (0, 0, 0.7)
 
     if(show_grid):
-        ax.set_xticks(np.arange(x_min,x_max,0.2))    
-        ax.set_yticks(np.arange(y_min,y_max,0.5))
+        # ax.set_xticks(np.arange(x_min,x_max,0.2))    
+        # ax.set_yticks(np.arange(y_min,y_max,0.5))
+        ax.xaxis.set_major_locator(MaxNLocator(nbins=10))
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=10))
 
         ax.minorticks_on()
         

@@ -101,6 +101,8 @@ def plot(
         show_lead_name = True,
         show_grid      = True,
         show_separate_line  = True,
+        show_axis_ticks = False,
+        show_border = False,
         ):
     """Plot multi lead ECG chart.
     # Arguments
@@ -127,6 +129,16 @@ def plot(
     display_factor = 1
     line_width = 0.5
     fig, ax = plt.subplots(figsize=(secs*columns * display_factor, rows * row_height / 5 * display_factor))
+    if not show_axis_ticks:
+        ax.set_yticklabels([])
+        ax.set_xticklabels([])
+    
+    if not show_border:
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)    
+    
     display_factor = display_factor ** 0.5
     fig.subplots_adjust(
         hspace = 0, 

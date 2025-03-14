@@ -210,7 +210,41 @@ def plot(
                     linewidth=line_width * display_factor, 
                     color=color_line
                     )
+
+def get_plot_as_image(ecg, sample_rate=500, title='ECG 12', lead_index=lead_index, 
+                     lead_order=None, style=None, columns=2, row_height=6,
+                     show_lead_name=True, show_grid=True, show_separate_line=True,
+                     show_axis_ticks=False, show_border=False, dpi=100):
+    """Plot ECG chart and return it as a numpy array image.
+    
+    # Arguments
+        Same arguments as the plot() function
+        dpi      : Resolution of the output image
         
+    # Returns
+        numpy array: RGB image of the plot
+    """
+    # Create the plot using the existing plot function
+    plot(ecg, sample_rate, title, lead_index, lead_order, style, columns,
+         row_height, show_lead_name, show_grid, show_separate_line,
+         show_axis_ticks, show_border)
+    
+    # Instead of showing or saving, convert to image
+    fig = plt.gcf()
+    
+    # Draw the figure to make sure it's rendered
+    fig.canvas.draw()
+    
+    # Get the RGBA buffer from the figure
+    w, h = fig.canvas.get_width_height()
+    buf = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
+    buf.shape = (h, w, 3)
+    
+    # Close the figure to free memory
+    plt.close(fig)
+    
+    return buf
+
 
 def plot_1(ecg, sample_rate=500, title = 'ECG', fig_width = 15, fig_height = 2, line_w = 0.5, ecg_amp = 1.8, timetick = 0.2):
     """Plot multi lead ECG chart.

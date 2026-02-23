@@ -235,10 +235,8 @@ def get_plot_as_image(ecg, sample_rate=500, title='ECG 12', lead_index=lead_inde
     # Draw the figure to make sure it's rendered
     fig.canvas.draw()
     
-    # Get the RGBA buffer from the figure
-    w, h = fig.canvas.get_width_height()
-    buf = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
-    buf.shape = (h, w, 3)
+    # Get the RGBA buffer from the figure and convert to RGB
+    buf = np.asarray(fig.canvas.buffer_rgba())[:, :, :3].copy()
     
     # Close the figure to free memory
     plt.close(fig)
